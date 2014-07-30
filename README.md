@@ -89,15 +89,6 @@ Matrix.vconcat(m1, m2, v)
 => Matrix[[1, 2, 3], [4, 5, 6], [2, 3, 4], [5, 6, 7], [3, 4, 5]]
 ```
 
-Converting a `Matrix` object to a `Matrix` object:
-
-```ruby
-require 'matrix_extensions' # if not loaded automatically
-
-Matrix.convert_to_matrix_extended Matrix[ [1,2,3], [4,5,6] ]
-=> Matrix[[1, 2, 3], [4, 5, 6]]
-```
-
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/matrix_extensions/fork )

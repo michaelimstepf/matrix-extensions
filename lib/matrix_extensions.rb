@@ -4,16 +4,6 @@ require 'matrix'
 # An extension to the Ruby Matrix class.
 # @author Michael Imstepf
 class Matrix
-  # Converts a Matrix to an Matrix.
-  # @param m [Matrix] matrix
-  # @return [Matrix] matrix
-  # @raise [TypeError] if matrices are not of type Matrix
-  def self.convert_to_matrix_extended(m)
-    raise TypeError, "#{m.class} is not a Matrix" unless m.is_a?(Matrix)
-
-    self.columns(m.column_vectors)
-  end
-
   # Matrix prefilled with zeros.
   # @param m [Matrix] matrix
   # @return [Matrix] matrix
