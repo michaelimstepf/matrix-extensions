@@ -3,10 +3,10 @@ require 'matrix'
 
 # An extension to the Ruby Matrix class.
 # @author Michael Imstepf
-class MatrixExtended < Matrix
-  # Converts a Matrix to an MatrixExtended.
+class Matrix
+  # Converts a Matrix to an Matrix.
   # @param m [Matrix] matrix
-  # @return [MatrixExtended] matrix
+  # @return [Matrix] matrix
   # @raise [TypeError] if matrices are not of type Matrix
   def self.convert_to_matrix_extended(m)
     raise TypeError, "#{m.class} is not a Matrix" unless m.is_a?(Matrix)
@@ -15,23 +15,23 @@ class MatrixExtended < Matrix
   end
 
   # Matrix prefilled with zeros.
-  # @param m [MatrixExtended] matrix
-  # @return [MatrixExtended] matrix
+  # @param m [Matrix] matrix
+  # @return [Matrix] matrix
   def self.zeros(rows = 1, columns = 1)
-    MatrixExtended.build(rows, columns) { 0 }
+    Matrix.build(rows, columns) { 0 }
   end
   self.singleton_class.send(:alias_method, :zeroes, :zeros)
 
   # Matrix prefilled with ones.
-  # @param m [MatrixExtended] matrix
-  # @return [MatrixExtended] matrix  
+  # @param m [Matrix] matrix
+  # @return [Matrix] matrix  
   def self.ones(rows = 1, columns = 1)
-    MatrixExtended.build(rows, columns) { 1 }
+    Matrix.build(rows, columns) { 1 }
   end
 
   # Concatenates two matrices horizontally (resulting in more columns).
-  # @param *matrices [MatrixExtended] matrices
-  # @return [MatrixExtended] concatenated matrix
+  # @param *matrices [Matrix] matrices
+  # @return [Matrix] concatenated matrix
   # @raise [ErrDimensionMismatch] if dimensions don't match
   # @raise [TypeError] if matrices are not of type Matrix or Vector 
   def self.hconcat(*matrices)        
@@ -57,8 +57,8 @@ class MatrixExtended < Matrix
   end  
 
   # Concatenates two matrices vertically (resulting in more rows).
-  # @param *matrices [MatrixExtended] matrices
-  # @return [MatrixExtended] concatenated matrix
+  # @param *matrices [Matrix] matrices
+  # @return [Matrix] concatenated matrix
   # @raise [ErrDimensionMismatch] if dimensions don't match
   # @raise [TypeError] if matrices are not of type Matrix or Vector  
   def self.vconcat(*matrices)
@@ -84,8 +84,8 @@ class MatrixExtended < Matrix
   end  
 
   # Element-wise division.
-  # @param m [MatrixExtended] matrix
-  # @return [MatrixExtended] matrix
+  # @param m [Matrix] matrix
+  # @return [Matrix] matrix
   # @raise [ErrDimensionMismatch] if dimensions don't match
   def element_division(m)
     case m
@@ -115,8 +115,8 @@ class MatrixExtended < Matrix
   end
   
   # Element-wise multiplication.
-  # @param m [MatrixExtended] matrix
-  # @return [MatrixExtended] matrix
+  # @param m [Matrix] matrix
+  # @return [Matrix] matrix
   # @raise [ErrDimensionMismatch] if dimensions don't match  
   def element_multiplication(m)
     case m
@@ -146,8 +146,8 @@ class MatrixExtended < Matrix
   end
 
   # Element-wise exponentiation.
-  # @param m [MatrixExtended] matrix
-  # @return [MatrixExtended] matrix
+  # @param m [Matrix] matrix
+  # @return [Matrix] matrix
   # @raise [ErrDimensionMismatch] if dimensions don't match  
   def element_exponentiation(m)
     case m
@@ -185,7 +185,7 @@ class MatrixExtended < Matrix
   # Convert vector to matrix for arithmetic operations.
   # @param vector [Vector] vector
   # @param dimension [Symbol] :row or :column
-  # @return [MatrixExtended] matrix
+  # @return [Matrix] matrix
   # @raise [TypeError] if vector ist not of type Vector    
   def self.convert_vector_to_matrix(v, dimension)
     raise TypeError, "#{v.class} is not a Vector" unless v.is_a? Vector    
