@@ -201,19 +201,5 @@ describe Matrix do
         end
       end      
     end        
-  end
-
-  describe '#convert_to_matrix_extended' do
-    context 'when input is not a matrix' do
-      it 'raises an exception' do
-        expect {Matrix.convert_to_matrix_extended(Vector[1,2,3])}.to raise_exception(TypeError)
-      end
-    end
-
-    context 'when input is a matrix' do
-      it 'returns the correct object' do
-        expect(Matrix.convert_to_matrix_extended(Matrix[ [1,2,3], [4,5,6] ])).to eq Matrix[ [1,2,3], [4,5,6] ]
-      end
-    end    
-  end                 
+  end        
 end
