@@ -201,5 +201,46 @@ describe Matrix do
         end
       end      
     end        
-  end        
+  end
+
+  describe '#hpop' do
+    context 'when number of columns equal number of columns to be popped' do
+      it 'raises an exception' do
+        expect {m23a.hpop(3)}.to raise_exception(Matrix::ErrDimensionMismatch)                
+      end
+    end
+
+    context 'when number of columns are smaller than number of columns to be popped' do
+      it 'raises an exception' do
+        expect {m23a.hpop(4)}.to raise_exception(Matrix::ErrDimensionMismatch)                
+      end
+    end
+
+    context 'when number of columns are greater than number of columns to be popped' do
+      it 'returns popped matrix' do
+        expect(m23a.hpop).to eq Matrix[ [1,2], [4,5] ]
+        expect(m23a.hpop(2)).to eq Matrix[ [1], [4] ]        
+      end
+    end
+  end
+
+  describe '#vpop' do
+    context 'when number of rows equal number of rows to be popped' do
+      it 'raises an exception' do
+        expect {m23a.vpop(2)}.to raise_exception(Matrix::ErrDimensionMismatch)                
+      end
+    end
+
+    context 'when number of rows are smaller than number of rows to be popped' do
+      it 'raises an exception' do
+        expect {m23a.vpop(3)}.to raise_exception(Matrix::ErrDimensionMismatch)                
+      end
+    end
+
+    context 'when number of rows are greater than number of rows to be popped' do
+      it 'returns popped matrix' do
+        expect(m23a.vpop).to eq Matrix[ [1,2,3] ]
+      end
+    end
+  end          
 end

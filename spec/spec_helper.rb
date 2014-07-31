@@ -1,4 +1,5 @@
 require 'matrix_extensions'
+require 'pry'
 
 RSpec.configure do |config|  
   # Run specs in random order to surface order dependencies. If you find an

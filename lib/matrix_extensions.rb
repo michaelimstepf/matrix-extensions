@@ -71,6 +71,40 @@ class Matrix
 
     # create new matrix
     self.rows(rows)
+  end
+  
+  # Removes trailing columns from a Matrix.
+  # @param number_of_columns [Integer] number of trailing columns to be removed
+  # @return [Matrix] matrix
+  # @raise [ErrDimensionMismatch] if Matrix does not have enough columns for operation
+  def hpop(number_of_columns = 1)        
+    Matrix.Raise ErrDimensionMismatch unless number_of_columns < self.column_count
+
+    columns = []
+    last_column_to_be_included = self.column_count - number_of_columns
+    self.column_vectors.each_with_index do |column, index|
+      break if index + 1 > last_column_to_be_included
+      columns << column.to_a
+    end
+    
+    Matrix.columns(columns)       
+  end
+
+  # Removes trailing rows from a Matrix.
+  # @param number_of_rows [Integer] number of trailing rows to be removed
+  # @return [Matrix] matrix
+  # @raise [ErrDimensionMismatch] if Matrix does not have enough rows for operation
+  def vpop(number_of_rows = 1)        
+    Matrix.Raise ErrDimensionMismatch unless number_of_rows < self.row_count
+
+    rows = []
+    last_row_to_be_included = self.row_count - number_of_rows
+    self.row_vectors.each_with_index do |row, index|
+      break if index + 1 > last_row_to_be_included
+      rows << row.to_a
+    end
+    
+    Matrix.rows(rows)       
   end  
 
   # Element-wise division.
