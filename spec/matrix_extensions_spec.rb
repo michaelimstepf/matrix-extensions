@@ -217,9 +217,14 @@ describe Matrix do
     end
 
     context 'when number of columns are greater than number of columns to be popped' do
-      it 'returns popped matrix' do
-        expect(m23a.hpop).to eq Matrix[ [1,2], [4,5] ]
-        expect(m23a.hpop(2)).to eq Matrix[ [1], [4] ]        
+      m23c = m23a.clone
+      m23d = m23a.clone
+
+      it 'pops matrix destructively and returns matrix of dropped columns' do
+        expect(m23c.hpop).to eq Matrix[ [3], [6] ]
+        expect(m23c).to eq Matrix[ [1,2], [4,5] ]
+        expect(m23d.hpop(2)).to eq Matrix[[2, 3], [5, 6]]
+        expect(m23d).to eq Matrix[ [1], [4] ]        
       end
     end
   end
@@ -238,8 +243,11 @@ describe Matrix do
     end
 
     context 'when number of rows are greater than number of rows to be popped' do
-      it 'returns popped matrix' do
-        expect(m23a.vpop).to eq Matrix[ [1,2,3] ]
+      m23e = m23a.clone
+
+      it 'pops matrix destructively and returns updated matrix' do
+        expect(m23e.vpop).to eq Matrix[ [4,5,6] ]        
+        expect(m23e).to eq Matrix[ [1,2,3] ]        
       end
     end
   end          

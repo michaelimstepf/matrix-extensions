@@ -91,18 +91,18 @@ Matrix.vconcat(m1, m2, v)
 
 **Removing trailing columns:**
 
-Removes a set number of trailing columns from a matrix. The argument defaults to 1.
+Removes a set number of trailing columns from a matrix (destructive) and returns the removed columns. The argument defaults to 1.
 
 ```ruby
 require 'matrix_extensions' # if not loaded automatically
 
 Matrix[ [1,2,3], [4,5,6] ].hpop(2)
-=> Matrix[[1], [4]]
+=> Matrix[[2, 3], [5, 6]]
 ```
 
 **Removing trailing rows:**
 
-Removes a set number of trailing rows from a matrix. The argument defaults to 1.
+Removes a set number of trailing rows from a matrix (destructive) and returns the removed rows. The argument defaults to 1.
 
 ```ruby
 require 'matrix_extensions' # if not loaded automatically
