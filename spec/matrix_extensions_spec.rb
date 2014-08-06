@@ -116,21 +116,9 @@ describe Matrix do
     end            
   end
 
-  describe '#ones' do
+  describe '#one' do
     it 'creates matrix with ones' do
-      expect(Matrix.ones(2, 3)). to eq Matrix[ [1,1,1], [1,1,1] ]
-    end
-  end
-
-  describe '#zeros' do
-    it 'creates matrix with zeros' do
-      expect(Matrix.zeros(2, 3)). to eq Matrix[ [0,0,0], [0,0,0] ]
-    end
-  end
-
-  describe '#zeroes' do
-    it 'creates matrix with zeros' do
-      expect(Matrix.zeros(2, 3)). to eq Matrix[ [0,0,0], [0,0,0] ]
+      expect(Matrix.one(2, 3)). to eq Matrix[ [1,1,1], [1,1,1] ]
     end
   end
 
@@ -250,5 +238,45 @@ describe Matrix do
         expect(m23e).to eq Matrix[ [1,2,3] ]        
       end
     end
-  end          
+  end
+
+  describe '#vcopy' do
+    context 'when no argument is given' do
+      m23f = m23a.clone           
+
+      it 'copies rows one time' do
+        expect(m23f.vcopy).to eq Matrix[[1, 2, 3], [4, 5, 6], [1, 2, 3], [4, 5, 6]] 
+        expect(m23f).to eq Matrix[[1, 2, 3], [4, 5, 6], [1, 2, 3], [4, 5, 6]]                
+      end
+    end
+
+    context 'when number of copies equals 3' do
+      m23g = m23a.clone      
+      
+      it 'copies rows 3 times' do
+        expect(m23g.vcopy(3)).to eq Matrix[[1, 2, 3], [4, 5, 6], [1, 2, 3], [4, 5, 6], [1, 2, 3], [4, 5, 6], [1, 2, 3], [4, 5, 6]]
+        expect(m23g).to eq Matrix[[1, 2, 3], [4, 5, 6], [1, 2, 3], [4, 5, 6], [1, 2, 3], [4, 5, 6], [1, 2, 3], [4, 5, 6]]                                                
+      end      
+    end    
+  end
+
+  describe '#hcopy' do
+    context 'when no argument is given' do
+      m23h = m23a.clone           
+
+      it 'copies columns one time' do
+        expect(m23h.hcopy).to eq Matrix[[1, 2, 3, 1, 2, 3], [4, 5, 6, 4, 5, 6]]
+        expect(m23h).to eq Matrix[[1, 2, 3, 1, 2, 3], [4, 5, 6, 4, 5, 6]]
+      end
+    end
+
+    context 'when number of copies equals 3' do
+      m23i = m23a.clone      
+      
+      it 'copies columns 3 times' do
+        expect(m23i.hcopy(3)).to eq Matrix[[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3], [4, 5, 6, 4, 5, 6, 4, 5, 6, 4, 5, 6]]
+        expect(m23i).to eq Matrix[[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3], [4, 5, 6, 4, 5, 6, 4, 5, 6, 4, 5, 6]]
+      end      
+    end    
+  end              
 end

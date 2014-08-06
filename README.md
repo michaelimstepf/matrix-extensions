@@ -47,15 +47,12 @@ Matrix[ [2,4], [1,4] ].element_exponentiation Matrix[ [2,4], [1,4]] ]
 => Matrix[[4, 256], [1, 256]]
 ```
 
-**Prefilled matrix with zeros or ones:**
+**Prefilled matrix with ones:**
 
 ```ruby
 require 'matrix_extensions' # if not loaded automatically
 
-Matrix.zeros(2,4)
-=> Matrix[[0, 0, 0, 0], [0, 0, 0, 0]]
-
-Matrix.ones(2,2)
+Matrix.one(2,2)
 => Matrix[[1, 1], [1, 1]]
 ```
 
@@ -96,8 +93,11 @@ Removes a set number of trailing columns from a matrix (destructive) and returns
 ```ruby
 require 'matrix_extensions' # if not loaded automatically
 
-Matrix[ [1,2,3], [4,5,6] ].hpop(2)
+m = Matrix[ [1,2,3], [4,5,6] ]
+m.hpop(2)
 => Matrix[[2, 3], [5, 6]]
+m
+=> Matrix[[1], [4]]
 ```
 
 **Removing trailing rows:**
@@ -107,8 +107,35 @@ Removes a set number of trailing rows from a matrix (destructive) and returns th
 ```ruby
 require 'matrix_extensions' # if not loaded automatically
 
-Matrix[ [1,2,3], [4,5,6], [7,8,9] ].vpop(2)
+m = Matrix[ [1,2,3], [4,5,6], [7,8,9] ]
+m.vpop(2)
+=> Matrix[[7, 8, 9], [4, 5, 6]]
+m
 => Matrix[[1, 2, 3]]
+```
+
+**Copying columns:**
+
+Copies columns a set amount of times (destructive) and returns matrix. The argument defaults to 1.
+
+```ruby
+require 'matrix_extensions' # if not loaded automatically
+
+m = Matrix[ [1,2], [3,4] ]
+m.hcopy(2)
+=> Matrix[[1, 2, 1, 2, 1, 2], [3, 4, 3, 4, 3, 4]]
+```
+
+**Copying rows:**
+
+Copies rows a set amount of times (destructive) and returns matrix. The argument defaults to 1.
+
+```ruby
+require 'matrix_extensions' # if not loaded automatically
+
+m = Matrix[ [1,2], [3,4] ]
+m.vcopy(2)
+=> Matrix[[1, 2], [3, 4], [1, 2], [3, 4], [1, 2], [3, 4]]
 ```
 
 ## Contributing

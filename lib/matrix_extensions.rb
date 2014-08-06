@@ -4,18 +4,11 @@ require 'matrix'
 # An extension to the Ruby Matrix class.
 # @author Michael Imstepf
 class Matrix
-  # Matrix prefilled with zeros.
-  # @param m [Matrix] matrix
-  # @return [Matrix] matrix
-  def self.zeros(rows = 1, columns = 1)
-    Matrix.build(rows, columns) { 0 }
-  end
-  self.singleton_class.send(:alias_method, :zeroes, :zeros)
-
   # Matrix prefilled with ones.
-  # @param m [Matrix] matrix
+  # @param rows [Integer] number of rows
+  # @param columns [Integer] number of columns
   # @return [Matrix] matrix  
-  def self.ones(rows = 1, columns = 1)
+  def self.one(rows = 1, columns = 1)
     Matrix.build(rows, columns) { 1 }
   end
 
@@ -99,10 +92,38 @@ class Matrix
     Matrix.Raise ErrDimensionMismatch unless number_of_rows < self.row_count
 
     dropped_rows = []    
-    number_of_rows.times { dropped_rows.unshift @rows.pop }
+    number_of_rows.times { dropped_rows << @rows.pop }
 
-    Matrix.rows(dropped_rows.reverse)      
+    Matrix.rows(dropped_rows)      
   end 
+
+  # Copies rows.
+  # @param number_of_copies [Integer] number of times rows should be copied
+  # @return [Matrix] matrix
+  def vcopy(number_of_copies = 1)        
+    existing_rows = rows.clone
+
+    number_of_copies.times do
+      existing_rows.each { |row| rows << row }
+    end
+
+    self
+  end
+
+  # Copies columns.
+  # @param number_of_copies [Integer] number of times columns should be copied
+  # @return [Matrix] matrix
+  def hcopy(number_of_copies = 1)        
+    rows.each do |row|
+      existing_row = row.clone
+      number_of_copies.times do
+        existing_row.each { |v| row << v }
+      end
+    end
+    @column_count += @column_count * number_of_copies
+
+    self
+  end
 
   # Element-wise division.
   # @param m [Matrix] matrix
